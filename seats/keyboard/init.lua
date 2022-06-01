@@ -1,1 +1,1 @@
-require("seats.keyboard.groups")
+require "seats.keyboard.groups"
