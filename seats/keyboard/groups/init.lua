@@ -1,0 +1,5 @@
+require("seats.keyboard.groups.awesome")
+require("seats.keyboard.groups.client")
+require("seats.keyboard.groups.focus")
+require("seats.keyboard.groups.layout")
+require("seats.keyboard.groups.tags")
