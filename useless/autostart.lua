@@ -4,6 +4,8 @@ local awful = require "awful"
 
 local cmds = {
     "xset -b",
+    "redshift -P -O 4600",
+    "setxkbmap -option caps:hyper",
     "picom -b --experimental-backends",
 }
 

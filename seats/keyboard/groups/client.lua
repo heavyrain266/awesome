@@ -20,7 +20,7 @@ client.connect_signal("request::default_keybindings", function()
             group = "Client",
             description = "Close focused",
             on_press = function(c)
-                c.kill()
+                c.kill(c)
             end,
         },
         awful.key {

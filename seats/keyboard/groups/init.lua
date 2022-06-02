@@ -1,4 +1,5 @@
 require "seats.keyboard.groups.awesome"
+require "seats.keyboard.groups.bling"
 require "seats.keyboard.groups.client"
 require "seats.keyboard.groups.focus"
 require "seats.keyboard.groups.layout"

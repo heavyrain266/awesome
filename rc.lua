@@ -19,10 +19,6 @@ local naughty = require "naughty"
 local menubar = require "menubar"
 local hotkeys_popup = require "awful.hotkeys_popup"
 
--- Enable hotkeys help widget for VIM and other apps
--- when client with a matching name is opened:
-require "awful.hotkeys_popup.keys"
-
 -- Check if awesome encountered an error during startup and fell back to
 -- another config (This code will only ever execute for the fallback config)
 naughty.connect_signal("request::display_error", function(message, startup)
@@ -34,10 +30,24 @@ naughty.connect_signal("request::display_error", function(message, startup)
     }
 end)
 
+-- Default shell
+awful.util.shell = "sh"
+
 -- Initialize selected theme
 beautiful.init(
-    gears.filesystem.get_configuration_dir() .. "themes/nightfall.lua"
+    require "themes/nightfall"
 )
+
+-- Prevent memory leaks
+gears.timer {
+    timeout = 60,
+    autostart = true,
+    callback = function()
+        collectgarbage("step", 1024)
+        collectgarbage("setpause", 110)
+        collectgarbage("setstepmul", 1000)
+    end,
+}
 
 -- This is used later as the default terminal and editor to run.
 Terminal = "alacritty"
@@ -126,6 +136,7 @@ screen.connect_signal("request::desktop_decoration", function(s)
     awful.tag.add("1", {
         gap = 10,
         screem = s,
+        selected = true,
         layout = awful.layout.suit.tile,
     })
     awful.tag.add("2", {
@@ -136,7 +147,6 @@ screen.connect_signal("request::desktop_decoration", function(s)
     awful.tag.add("3", {
         gap = 10,
         screen = s,
-        selected = true,
         layout = awful.layout.suit.floating,
     })
     awful.tag.add("4", {
@@ -255,6 +265,9 @@ end)
 client.connect_signal("mouse::enter", function(c)
     c:activate { context = "mouse_enter", raise = false }
 end)
+
+-- Modules: bling
+require "modules.bling"
 
 -- Rules: clients & notifs
 require "rules.apps"
