@@ -7,13 +7,11 @@ local playerctl = bling.signal.playerctl.lib()
 -- bling.module.flash_focus.enable()
 
 -- Music notifications
-playerctl:connect_signal("metadata",
-    function(_, title, artist, album_path, new)
-        if new == true then
-            naughty.notify { title = title, text = artist, image = album_path }
-        end
+playerctl:connect_signal("metadata", function(_, title, artist, album_path, new)
+    if new == true then
+        naughty.notify { title = title, text = artist, image = album_path }
     end
-)
+end)
 
 -- TODO: Music control widget
 
