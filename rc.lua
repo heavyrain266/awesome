@@ -34,13 +34,11 @@ end)
 awful.util.shell = "sh"
 
 -- Initialize selected theme
-beautiful.init(
-    require "themes/nightfall"
-)
+beautiful.init(require "themes/nightfall")
 
 -- Prevent memory leaks
 gears.timer {
-    timeout = 60,
+    timeout = 60 * 60, -- 1 hour
     autostart = true,
     callback = function()
         collectgarbage("step", 1024)

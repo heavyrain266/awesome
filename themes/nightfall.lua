@@ -10,7 +10,7 @@ local wallpaper_path = gfs.get_configuration_dir()
 
 local nightfall = {}
 
-nightfall.font = "JuliaMono Bold 9"
+nightfall.font = "Pragmata Medium 10"
 
 nightfall.bg_normal = "#222222"
 nightfall.bg_focus = "#535d6c"

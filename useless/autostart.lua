@@ -3,7 +3,7 @@
 local awful = require "awful"
 
 -- Check if file/dir exists
-function exists(path)
+local exists = function(path)
     local ok = os.rename(path, path)
 
     if ok == nil then
@@ -15,7 +15,7 @@ function exists(path)
     return true
 end
 
-if not exists "./bling" then
+if not exists "./bling" and "./rubato" then
     os.execute "git submodule update --init"
 end
 
@@ -24,7 +24,7 @@ local cmds = {
     "redshift -P -O 4600",
     "setxkbmap -option caps:hyper",
     "picom -b --experimental-backends",
-    "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1"
+    "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1",
 }
 
 for cmd = 1, #cmds do

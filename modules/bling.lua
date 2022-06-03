@@ -14,5 +14,4 @@ playerctl:connect_signal("metadata", function(_, title, artist, album_path, new)
 end)
 
 -- TODO: Music control widget
-
 -- TODO: Tag previw widget
