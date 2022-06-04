@@ -38,7 +38,8 @@ beautiful.init(require "themes/nightfall")
 
 -- Prevent memory leaks
 gears.timer {
-    timeout = 60 * 60, -- 1 hour
+    timeout = 30,
+    call_now = true,
     autostart = true,
     callback = function()
         collectgarbage("step", 1024)
@@ -105,59 +106,10 @@ Launcher = awful.widget.launcher {
 -- Menubar configuration
 menubar.utils.terminal = Terminal
 
--- Default layout(s)
-tag.connect_signal("request::default_layouts", function()
-    awful.layout.append_default_layouts {
-        awful.layout.suit.tile,
-        awful.layout.suit.floating,
-    }
-end)
-
--- Wallpaper
-screen.connect_signal("request::wallpaper", function(s)
-    awful.wallpaper {
-        screen = s,
-        widget = {
-            horizontal_fit_policy = "fit",
-            vertical_fit_policy = "fit",
-            image = beautiful.wallpaper,
-            widget = wibox.widget.imagebox,
-        },
-    }
-end)
-
 -- Create a textclock widget
 local text_clock = wibox.widget.textclock()
 
 screen.connect_signal("request::desktop_decoration", function(s)
-    -- Define tags
-    awful.tag.add("1", {
-        gap = 10,
-        screem = s,
-        selected = true,
-        layout = awful.layout.suit.tile,
-    })
-    awful.tag.add("2", {
-        gap = 10,
-        screem = s,
-        layout = awful.layout.suit.floating,
-    })
-    awful.tag.add("3", {
-        gap = 10,
-        screen = s,
-        layout = awful.layout.suit.floating,
-    })
-    awful.tag.add("4", {
-        gap = 10,
-        screen = s,
-        layout = awful.layout.suit.floating,
-    })
-    awful.tag.add("5", {
-        gap = 10,
-        screem = s,
-        layout = awful.layout.suit.floating,
-    })
-
     -- Create a promptbox for each screen
     s.mypromptbox = awful.widget.prompt()
 
@@ -254,16 +206,6 @@ screen.connect_signal("request::desktop_decoration", function(s)
     }
 end)
 
--- Display notification(s).
-naughty.connect_signal("request::display", function(n)
-    naughty.layout.box { notification = n }
-end)
-
--- Focus follows mouse
-client.connect_signal("mouse::enter", function(c)
-    c:activate { context = "mouse_enter", raise = false }
-end)
-
 -- Modules: bling
 require "modules.bling"
 
@@ -273,6 +215,13 @@ require "rules.notifs"
 
 -- Shell: titlebars, widgets, wibar
 require "shell.titlebar"
+-- TODO: require "shell.wibar"
+-- TODO: require "shell.widgets"
+
+-- Signals: trigger certain functions on signal connection
+require "signals.client"
+require "signals.naughty"
+require "signals.screen"
 
 -- Seats: mouse & keyboard bindings
 require "seats.mouse"

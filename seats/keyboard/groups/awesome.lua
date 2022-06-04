@@ -28,12 +28,21 @@ awful.keyboard.append_global_keybindings {
         on_press = awesome.quit,
     },
     awful.key {
+        modifiers = {},
+        key = "Print",
+        group = "Awesome",
+        description = "Take screenshot",
+        on_press = function()
+            awful.spawn.with_shell "flameshot gui"
+        end,
+    },
+    awful.key {
         modifiers = { Mod, "Shift" },
         key = "Return",
         group = "Awesome",
         description = "Spawn terminal",
         on_press = function()
-            awful.spawn(Terminal)
+            awful.spawn.with_shell(Terminal)
         end,
     },
     awful.key {
