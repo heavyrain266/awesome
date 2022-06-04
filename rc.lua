@@ -206,27 +206,37 @@ screen.connect_signal("request::desktop_decoration", function(s)
     }
 end)
 
--- Modules: bling
-require "modules.bling"
+-- External: additional libraries
+require "external.bling"
 
--- Rules: clients & notifs
-require "rules.apps"
-require "rules.notifs"
+--[[
+    Rules: all clients & notifications will follow them
+    for example, firefox will not have titlebar.
+]]
+require "rules"
 
--- Shell: titlebars, widgets, wibar
+--[[
+    Shell: provides UI elements like:
+      - wibar
+      - notifs
+      - widgets
+      - titlebars
+]]
 require "shell.titlebar"
--- TODO: require "shell.wibar"
--- TODO: require "shell.widgets"
 
--- Signals: trigger certain functions on signal connection
-require "signals.client"
-require "signals.naughty"
-require "signals.screen"
+--[[
+    Signals: awesome will emit certain signals
+    to e.g. request decorations which allow setting up
+    titlebars, wallpapers, tags and more
+]]
+require "signals"
 
--- Seats: mouse & keyboard bindings
-require "seats.mouse"
-require "seats.keyboard"
+-- Seat: input conifugration
+require "seats"
 
--- Useless: not that important
-require "useless.maximize"
-require "useless.autostart"
+--[[
+    Utils: simple utility scripts
+      - maximize: maximize window by dragging it on top of the screen
+      - autostart: table of programs and scripts which should start with awesome
+]]
+require "utils"

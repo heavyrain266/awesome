@@ -46,10 +46,10 @@ ruled.client.connect_signal("request::rules", function()
         properties = { floating = true },
     }
 
-    -- Add titlebars to normal clients and dialogs
+    -- Add titlebars to normal clients
     ruled.client.append_rule {
         id = "titlebars",
-        rule_any = { type = { "normal", "dialog" } },
+        rule_any = { type = { "normal" } },
         except_any = { class = { "firefox", "qutebrowser" } },
         properties = { titlebars_enabled = true },
     }
