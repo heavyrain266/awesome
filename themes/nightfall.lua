@@ -33,12 +33,12 @@ nightfall.border_color_marked = "#91231c"
 local taglist_square_size = xres.apply_dpi(4)
 
 nightfall.taglist_squares_sel = theme_assets.taglist_squares_sel(
-    taglist_square_size,
-    nightfall.fg_normal
+  taglist_square_size,
+  nightfall.fg_normal
 )
 nightfall.taglist_squares_unsel = theme_assets.taglist_squares_unsel(
-    taglist_square_size,
-    nightfall.fg_normal
+  taglist_square_size,
+  nightfall.fg_normal
 )
 
 nightfall.menu_submenu_icon = themes_path .. "default/submenu.png"
@@ -49,9 +49,9 @@ nightfall.wallpaper = wallpaper_path .. "themes/assets/ocean.jpg"
 
 -- Generate Awesome icon:
 nightfall.awesome_icon = theme_assets.awesome_icon(
-    nightfall.menu_height,
-    nightfall.bg_focus,
-    nightfall.fg_focus
+  nightfall.menu_height,
+  nightfall.bg_focus,
+  nightfall.fg_focus
 )
 
 -- Define the icon theme for application icons. If not set then the icons
@@ -60,15 +60,15 @@ nightfall.icon_theme = nil
 
 -- Set different colors for urgent notifications.
 rnotification.connect_signal("request::rules", function()
-    rnotification.append_rule {
-        rule = {
-            urgency = "critical",
-        },
-        properties = {
-            bg = "#ff0000",
-            fg = "#ffffff",
-        },
-    }
+  rnotification.append_rule {
+    rule = {
+      urgency = "critical",
+    },
+    properties = {
+      bg = "#ff0000",
+      fg = "#ffffff",
+    },
+  }
 end)
 
 return nightfall
